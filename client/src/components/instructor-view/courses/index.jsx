@@ -48,7 +48,6 @@ function InstructorCourses({ listOfCourses }) {
               <TableRow>
                 <TableHead>Course</TableHead>
                 <TableHead>Students</TableHead>
-                <TableHead>Revenue</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -60,9 +59,6 @@ function InstructorCourses({ listOfCourses }) {
                         {course?.title}
                       </TableCell>
                       <TableCell>{course?.students?.length}</TableCell>
-                      <TableCell>
-                        ${course?.students?.length * course?.pricing}
-                      </TableCell>
                       <TableCell className="text-right">
                         <Button
                           onClick={() => {

@@ -23,29 +23,29 @@ const getAllStudentViewCourses = async (req, res) => {
       filters.primaryLanguage = { $in: primaryLanguage.split(",") };
     }
 
-    let sortParam = {};
-    switch (sortBy) {
-      case "price-lowtohigh":
-        sortParam.pricing = 1;
+     let sortParam = {};
+     switch (sortBy) {
+       case "price-lowtohigh":
+         sortParam.pricing = 1;
 
-        break;
-      case "price-hightolow":
-        sortParam.pricing = -1;
+         break;
+       case "price-hightolow":
+         sortParam.pricing = -1;
 
-        break;
-      case "title-atoz":
-        sortParam.title = 1;
+         break;
+       case "title-atoz":
+         sortParam.title = 1;
 
-        break;
-      case "title-ztoa":
-        sortParam.title = -1;
+         break;
+       case "title-ztoa":
+         sortParam.title = -1;
 
-        break;
+         break;
 
-      default:
-        sortParam.pricing = 1;
-        break;
-    }
+       default:
+         sortParam.pricing = 1;
+         break;
+     }
 
     const coursesList = await Course.find(filters).sort(sortParam);
 

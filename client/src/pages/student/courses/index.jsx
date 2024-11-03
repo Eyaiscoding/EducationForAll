@@ -23,15 +23,12 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 
 function createSearchParamsHelper(filterParams) {
   const queryParams = [];
-
   for (const [key, value] of Object.entries(filterParams)) {
     if (Array.isArray(value) && value.length > 0) {
       const paramValue = value.join(",");
-
       queryParams.push(`${key}=${encodeURIComponent(paramValue)}`);
     }
   }
-
   return queryParams.join("&");
 }
 
@@ -59,8 +56,6 @@ function StudentViewCoursesPage() {
         ...cpyFilters,
         [getSectionId]: [getCurrentOption.id],
       };
-
-      console.log(cpyFilters);
     } else {
       const indexOfCurrentOption = cpyFilters[getSectionId].indexOf(
         getCurrentOption.id
@@ -127,16 +122,26 @@ function StudentViewCoursesPage() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">All Courses</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-bold">All Courses</h1>
+        <Button
+          variant="solid"
+          className="bg-purple-500 text-white"
+          onClick={() => window.location.href = "http://localhost:3000/"}
+        >
+          Chat Support
+        </Button>
+      </div>
+
       <div className="flex flex-col md:flex-row gap-4">
         <aside className="w-full md:w-64 space-y-4">
           <div>
             {Object.keys(filterOptions).map((ketItem) => (
-              <div className="p-4 border-b">
+              <div className="p-4 border-b" key={ketItem}>
                 <h3 className="font-bold mb-3">{ketItem.toUpperCase()}</h3>
                 <div className="grid gap-2 mt-2">
                   {filterOptions[ketItem].map((option) => (
-                    <Label className="flex font-medium items-center gap-3">
+                    <Label className="flex font-medium items-center gap-3" key={option.id}>
                       <Checkbox
                         checked={
                           filters &&
@@ -220,9 +225,6 @@ function StudentViewCoursesPage() {
                             ? "Lecture"
                             : "Lectures"
                         } - ${courseItem?.level.toUpperCase()} Level`}
-                      </p>
-                      <p className="font-bold text-lg">
-                        ${courseItem?.pricing}
                       </p>
                     </div>
                   </CardContent>

@@ -39,15 +39,15 @@ const createOrder = async (req, res) => {
               {
                 name: courseTitle,
                 sku: courseId,
-                price: coursePricing,
+                // price: coursePricing,
                 currency: "USD",
                 quantity: 1,
               },
             ],
           },
-          amount: {
-            currency: "USD",
-            total: coursePricing.toFixed(2),
+           amount: {
+           currency: "USD",
+           total: coursePricing.toFixed(2),
           },
           description: courseTitle,
         },
